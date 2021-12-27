@@ -1,4 +1,5 @@
 import random as rnd
+import numpy as np
 import prettytable
 
 POPULATION_SIZE = 9
@@ -241,7 +242,7 @@ class Schedule:
                 if j >= i:
                     if \
                             classes[i].get_meetingTime() == classes[j].get_meetingTime() and classes[i].get_id() != \
-                            classes[j].get_id():
+                                    classes[j].get_id():
                         if classes[i].get_room() == classes[j].get_room():
                             self._numOfConflicts += 1
 
@@ -431,13 +432,32 @@ class DisplayMgr:
             room = classes[i].get_room().get_number() + " (" + str(classes[i].get_room().get_seatingCapacity()) + ")"
             meeting_time = classes[i].get_meetingTime().get_time() + " (" + classes[i].get_meetingTime().get_id() + ")"
 
-
             table1.add_row(
                 [classes[i].get_id(), classes[i].get_dept().get_name(), course,
                  room, instructor, meeting_time]
             )
 
         print(table1)
+
+    def print_mean(self, population):
+        self.is_not_used()
+        schedules = population.get_schedules()
+        fitness_scores = []
+
+        for i in range(len(schedules)):
+            fitness_scores.append(round(schedules[i].get_fitness(), 3))
+
+        print("> Mean= ", np.array(fitness_scores).mean())
+
+    def print_std(self, population):
+        self.is_not_used()
+        schedules = population.get_schedules()
+        fitness_scores = []
+
+        for i in range(len(schedules)):
+            fitness_scores.append(round(schedules[i].get_fitness(), 3))
+
+        print("> Standard Deviation= ", np.array(fitness_scores).std())
 
     def is_not_used(self):
         pass
@@ -462,3 +482,5 @@ while population.get_schedules()[0].get_fitness() != 1.0:
     population.get_schedules().sort(key=lambda x: x.get_fitness(), reverse=True)
     display.print_generation(population)
     display.print_schedule_as_table(population.get_schedules()[0])
+    display.print_mean(population)
+    display.print_std(population)
