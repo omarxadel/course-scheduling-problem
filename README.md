@@ -14,6 +14,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@omarxadel](https://twitter.com/omarxadel) - omarxadel21@gmail.com
+Omar Adel - [@omarxadel](https://twitter.com/omarxadel) - omarxadel21@gmail.com
 
 Project Link: [https://github.com/omarxadel/course-scheduling-problem](https://github.com/omarxadel/course-scheduling-problem)
